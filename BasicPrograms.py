@@ -76,6 +76,36 @@ def calculator():
 
 def money_converter():
     print ("---MONEY CONVERTER---")
+    pesos = int(input("Enter money in peso: "))
+    print(" ")
+    print("---CHOOSE to CONVERT to---")
+    try:
+        convert = int(input("(1.Dollars) (2. Yen) (3. Euro) (4. Rupees) --> "))
+    except ValueError:
+        print("Input the designated number!")
+        return money_converter()
+    
+    if convert == 1:
+        exchange = 0.0176
+        sign = "$"
+    elif convert == 2:
+        exchange = 2.66
+        sign = "¥"
+    elif convert == 3:
+        exchange = 0.0163
+        sign = "€"
+    elif convert == 4:
+        exchange = 1.
+        sign = "₹"
+    else:
+        print("Choose only between 1-4")
+        return money_converter
+    
+    equals = pesos * exchange
+    
+    print(" ")
+    print( pesos , "₱ ---> ", equals, sign)
+
     
     time.sleep(3)
 
