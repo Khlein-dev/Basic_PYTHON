@@ -17,7 +17,13 @@ ground_surface = pygame.image.load('pics/ground.jpg').convert()
 text_surface = test_font.render('Khlein GO! GO!', False, 'Blue')
 
 doggy_surface = pygame.image.load('pics/doggy.png').convert_alpha()
-doggy_sit = 600
+doggy_surface = pygame.transform.scale(doggy_surface, (90, 90))
+doggy_rect = doggy_surface.get_rect(midbottom = (600, 340))
+# doggy_sit = 600
+
+player_surface = pygame.image.load('pics/player.png').convert_alpha()
+player_surface = pygame.transform.scale(player_surface, (120, 120))
+player_rect = player_surface.get_rect(midbottom = (50, 340))
 
 while True:
     for event in pygame.event.get():
@@ -29,11 +35,16 @@ while True:
     screen.blit(pygame.transform.scale(sky_surface, (800, 400)), (0, 0))
     screen.blit(pygame.transform.scale(ground_surface, (800, 100)), (0, 300))
     screen.blit(text_surface,(200, 50))
-    doggy_sit -= 2
-    if doggy_sit < -100: doggy_sit = 800
-        
-        
-    screen.blit(pygame.transform.scale(doggy_surface, (90, 90)), (doggy_sit, 250))
+    # doggy_sit -= 2
+    # if doggy_sit < -100: doggy_sit = 800
+    
+    doggy_rect.x -=2
+    if doggy_rect.right < 0:
+         doggy_rect.left = 800
+    screen.blit(doggy_surface, doggy_rect)
+    
+    player_rect.left += 1
+    screen.blit(player_surface, player_rect)
     
     #Draw elements
     #Update everything
